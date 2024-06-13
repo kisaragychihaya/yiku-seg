@@ -336,11 +336,6 @@ def main():
     if hasattr(net,"fuse"):
         net.fuse()
     mod = sys.modules[__name__]
-    # if args.names and os.path.isfile(args.names):
-    #     with open(args.names,mode="r")as f:
-    #         lines = [line.strip() for line in f.readlines() if line.strip() != ""]
-    #         if len(lines) > 0:
-    #             NUM_CLASSES=len(lines)
     for format in FORMATS:
         func = getattr(mod, "export_"+format)
         func(net,Path(SAVE_PATH)/Path(model_path).name,IMGSZ,fp16=args.half,batch=args.batch,
